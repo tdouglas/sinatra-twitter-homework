@@ -6,3 +6,12 @@
 <body>
 <%= yield %>
 <body>
+
+<form action="/tweet" method="get">
+<input type="text" name="username">     <!-- name is synonymous with params -->
+<button>Get Tweets</button>
+</form>
+-------------------------------------<br>
+These are params for learning sinatra
+<%=params%>
+

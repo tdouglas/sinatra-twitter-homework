@@ -38,18 +38,42 @@ configure do
   end
 end
 
+get '/' do
+  erb :home
+end
+get '/tweet' do
+  redirect to ("tweets/"+params[:username])
+
+  # This is the homepage hit
+  # @username = params[:username]
+   # erb :tweets
+end
+
 get '/tweets/:username' do
   # This gets the username from the params hash
   @username = params[:username]
-
-  # This queries Twitter's API and asks for the most recent Tweets from a user
-  # The tweets are stored in an Array called @my_tweets
   @my_tweets = Twitter.user_timeline(@username)
-
-  # The following 3 lines will output the text from each tweet from a user
-  @my_tweets.each do |tweet|
-    tweet[:text]
-  end
-
+  # redirect to (tweets/)
   erb :tweets
 end
+
+#   # This queries Twitter's API and asks for the most recent Tweets from a user
+#   # The tweets are stored in an Array called @my_tweets
+#   @my_tweets = Twitter.user_timeline(@username)
+
+#   # The following 3 lines will output the text from each tweet from a user
+#   @my_tweets.each do |tweet|
+#     tweet[:text]
+#   end
+
+#   erb :tweets
+# end
+
+
+## Story
+# * A user should be able to see Tweets from a valid public twitter user
+# * A user should be able to use a form to input the username of the twitter user
+# * A user should be able to see images attached to a tweet if they exist
+# * A user should be able to click through to the original tweet on Twitter
+# * A user should see basic public information about the queried user
+
